@@ -1,0 +1,18 @@
+property.filename = logs
+appenders = console, kafka
+
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern =%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}
+
+appender.kafka.type = Kafka
+appender.kafka.name = KafkaAppender
+appender.kafka.timeout.ms = 1000
+appender.kafka.layout.pattern =%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}
+appender.kafka.topic = logs
+appender.kafka.bootstrap.servers = localhost:9092
+
+rootLogger.level = debug
+rootLogger.appenderRefs = stdout, Kafka
+rootLogger.appenderRef.stdout.ref = STDOUT
